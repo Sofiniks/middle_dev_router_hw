@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { NavLink, Routes, Route} from 'react-router-dom';
+import { Home } from './pages/Home';
+import { Categories } from './pages/Category';
+import { Episode } from './pages/Episode';
+import { Hero } from './pages/Hero';
+import { Location } from './pages/Location';
+import { NotFound } from './pages/NotFound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <ul>
+      <li key="heroes">
+        <NavLink
+        to="/heroes"
+         >Heroes</NavLink>
+      </li>
+      <li key="locations">
+        <NavLink 
+        to="/locations">
+          Locations</NavLink>
+      </li>
+      <li key="episodes">
+        <NavLink to="/episodes">Episodes</NavLink>
+      </li>
+    </ul>
+    
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/:category" element={<Categories/>}/>
+      <Route path="/episodes/:id"  element={<Episode/>}/>
+      <Route path="/locations/:id"  element={<Location/>}/>
+      <Route path="/heroes/:id" element={<Hero/>}/>
+      <Route path="*" element={<NotFound/>}/>
+    </Routes>
+    </>
   );
 }
 
