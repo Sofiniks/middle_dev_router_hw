@@ -1,41 +1,26 @@
-import { NavLink, Routes, Route} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
+import { MainLayout } from './layout/MainLayout';
 import { Home } from './pages/Home';
 import { Categories } from './pages/Category';
-import { Episode } from './pages/Episode';
-import { Hero } from './pages/Hero';
-import { Location } from './pages/Location';
+import { Details } from './pages/Details';
 import { NotFound } from './pages/NotFound';
+import { AuthProvider } from './context/AuthProvider';
+import { Login } from './pages/Login';
+import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
   return (
-    <>
-    <ul>
-      <li key="heroes">
-        <NavLink
-        to="/heroes"
-         >Heroes</NavLink>
-      </li>
-      <li key="locations">
-        <NavLink 
-        to="/locations">
-          Locations</NavLink>
-      </li>
-      <li key="episodes">
-        <NavLink to="/episodes">Episodes</NavLink>
-      </li>
-    </ul>
-    
-    <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/episodes" element={<Categories/>}/>
-      <Route path="/locations" element={<Categories/>}/>
-      <Route path="/heroes" element={<Categories/>}/>
-      <Route path="/episodes/:id"  element={<Episode/>}/>
-      <Route path="/locations/:id"  element={<Location/>}/>
-      <Route path="/heroes/:id" element={<Hero/>}/>
-      <Route path="*" element={<NotFound/>}/>
+    <AuthProvider>
+      <Routes>
+      <Route element={<MainLayout/>}>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/:category" element={<PrivateRoute><Categories/></PrivateRoute>}/>
+        <Route path="/:category/:id"  element={<PrivateRoute><Details/></PrivateRoute>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Route>
+      <Route path="/login" element={<Login/>}/>
     </Routes>
-    </>
+    </AuthProvider>
   );
 }
 
