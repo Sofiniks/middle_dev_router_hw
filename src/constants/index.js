@@ -13,3 +13,9 @@ export const CATEGORIES_NAME = {
     episodes: 'Episodes',
     locations: 'Locations'
 }
+
+export const CATEGORIES_API = {
+    heroes: 'character',
+    episodes: 'episode',
+    locations: 'location'
+}

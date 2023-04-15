@@ -22,7 +22,7 @@ export function Details () {
             {species && <p>Species: {species}</p>}
             {status && <p>Status: {status}</p>}
             {dimension && <p>Dimension: {dimension}</p>}
-            {episode && <p>Episode: {episode}</p>}
+            {episode && category === 'episodes' && <p>Episode: {episode}</p>}
             {air_date && <p>Air date: {air_date}</p>}
             <p>Created: {moment(created).format('YYYY-MM-DD')}</p>
             {type && (<p>Type: {type}</p>)}
